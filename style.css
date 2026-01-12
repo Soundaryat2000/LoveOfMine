@@ -1,0 +1,132 @@
+body {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background: #fff6f9;
+  font-family: sans-serif;
+}
+
+h1 {
+  margin: 20px 0;
+  font-size: clamp(18px, 4vw, 26px);
+  color: #c2185b;
+}
+
+/* Jar container */
+.jar-container {
+  position: relative;
+  width: min(90vw, 300px);
+  margin: 40px auto;
+}
+
+/* Jar image */
+.jar {
+  width: 100%;
+  height: auto;
+  display: block;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Hearts */
+.heart {
+  position: absolute;
+  cursor: pointer;
+  user-select: none;
+  animation: float 4s infinite ease-in-out;
+  z-index: 5;
+}
+
+.heart img {
+  width: clamp(28px, 10vw, 45px);
+  height: auto;
+  display: block;
+}
+
+/* Tooltip */
+.heart::after {
+  content: attr(data-text);
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: clamp(10px, 3vw, 14px);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  z-index: 30;
+}
+
+.heart:hover::after,
+.heart:active::after {
+  opacity: 1;
+}
+
+/* Heart float animation */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* Pop animation */
+@keyframes pop {
+  0% { transform: scale(1); opacity: 1; }
+  70% { transform: scale(1.4); opacity: 0.8; }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+.heart.pop {
+  animation: pop 0.6s ease-out forwards;
+}
+
+/* Final message */
+.final-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 320px;
+  text-align: center;
+  font-family: 'Allura', cursive;
+  font-size: clamp(13px, 3.5vw, 16px);
+  color: #8b1e1e;
+  background: rgba(255,255,255,0.85);
+  padding: 16px;
+  border-radius: 12px;
+  z-index: 6;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+/* Media popup */
+#media-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  max-width: 90%;
+}
+#media-container img, #media-container video {
+  max-width: 100%;
+  height: auto;
+}
+#media-container audio {
+  width: 90%;
+}
+#media-container button {
+  margin-top: 10px;
+  padding: 6px 12px;
+  font-size: clamp(14px,3vw,16px);
+  cursor: pointer;
+  border-radius: 6px;
+  border: none;
+  background: #c2185b;
+  color: #fff;
+  }
